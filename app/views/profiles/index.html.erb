@@ -1,0 +1,11 @@
+
+<div class="profile-instagram">
+<div class="text-center">
+<% @users.each do |user| %>
+<%= render user%>
+<% end %>
+</div>
+<% if !@users[0].present? %>
+<h2>No users found</h2>
+<% end %>
+</div>

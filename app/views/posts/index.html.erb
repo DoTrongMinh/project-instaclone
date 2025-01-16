@@ -1,0 +1,45 @@
+<%= stylesheet_link_tag "post" %>
+
+<% if user_signed_in? %>
+  <% if current_user.admin? %>
+    <p>You are an Admin</p>
+  <% end %>
+  <p style="color: green"><%= notice || '' %></p>
+  
+  <div id="posts" class="text-center">
+    <% @posts.each do |post| %>
+      <%= render partial: 'post', locals: { post: post } %>
+    <% end %>
+  </div>
+<% end %>
+
+<p style="color: green"><%= notice %></p>
+<%= raw pagy_bootstrap_nav(@pagy) %>
+<div class="row">
+  <div id="posts" class="text-center">
+    <% @posts.each do |post| %>
+      <%= render post %>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

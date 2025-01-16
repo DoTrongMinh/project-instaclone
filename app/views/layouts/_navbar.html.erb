@@ -1,0 +1,52 @@
+<%= stylesheet_link_tag("navbar.css")%>
+<nav class="navbar navbar-light bg-light navbar-vertical">
+<h2 id="title-instagram"><a href="/">INSTAGRAM</a></h2>
+   <% if user_signed_in? %>
+     <% if current_user && current_user.avatar.attached? %>
+      <%= image_tag current_user.avatar, style:"width: 150px; height: 150px;" %>
+    <%end%>
+  <%= form_with url: profiles_index_path, method: :get do |form| %>
+  <%= form.search_field :query,value: params[:query], placeholder: "Search", class:"search-field"%>
+  <%= form.submit "Search",class:"btn btn-primary"%>
+  <% end %>
+<%end%>
+  <%# <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 20px;"> %>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+      <%= link_to "Home", root_path, class: "nav-link",style:"" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "View My Posts" , posts_myposts_path, class:"nav-link" %>
+      </li>
+      <li class="nav-item active">
+       <%= link_to "Upload Post", new_post_path,class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "About Page" , home_about_path, class:"nav-link" %>
+      </li>
+      <% if user_signed_in? %>
+      <% if current_user.admin? %>
+      <li class="nav-item">
+        <%= link_to "Admin Panel" , rails_admin_path, class:"nav-link" %>
+      </li>
+      <% end %>
+      <li class="nav-item">
+       <%= link_to "View my profile", current_user, class:"nav-link"%>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Sign out" , destroy_user_session_path,method: :delete, class:"nav-link", style:"border:none;" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Edit Account" , edit_user_registration_path, class:"nav-link" %>
+      </li>
+      <% else %>
+      <li class="nav-item">
+        <%= link_to "Sign up" , new_user_registration_path, class:"nav-link" %>
+      </li>
+      <% end %>
+    </ul>
+   </div>
+</nav>

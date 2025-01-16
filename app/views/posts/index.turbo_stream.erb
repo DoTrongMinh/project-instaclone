@@ -1,0 +1,13 @@
+<% turbo_stream.append :posts do %>
+<% @posts.each do |post|%>
+<% if user_signed_in? %>
+<% if current_user.following?(post.user) %>
+<%= render post %>
+<%end%>
+<%end%>
+<%end%>
+<% if !user_signed_in? %>
+<% @posts.each do |post| %>
+<% end %>
+<% end %>
+<% end %>

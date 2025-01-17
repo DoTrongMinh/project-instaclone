@@ -1,3 +1,4 @@
+<div style="margin: auto;text-align: center">
 <p style="color: green"><%= notice %></p>
 <%= render @post %>
 <%= link_to "Back to posts", posts_path %>
@@ -9,9 +10,12 @@
 </div>
 <% end %>
 <% end %>
+<div style="margin: auto;">
 <%= render "comments/form", comment: @comment %>
 <%= @post.comments.each do |comment| %>
 <% next if comment.text.blank? %>
 <%= comment.text %>
 <br>
 <% end %>
+</div>
+</div>

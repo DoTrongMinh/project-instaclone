@@ -18,7 +18,9 @@
   <%= image_tag(image, style: "max-width: 50%; height: auto; object-fit: contain;") %>
   <% end %> 
   <p> 
-  <%= post.title %>
+  <%= post.title %><br>
+  <%= post.description%><br>
+  <%= post.keyword%>
   </p>
 <% if user_signed_in? %>
 <% like = current_user.likes.find_by(post: post) %>
